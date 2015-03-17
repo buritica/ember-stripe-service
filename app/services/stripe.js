@@ -8,9 +8,6 @@ function createToken (card) {
     Ember.Logger.info('StripeService: getStripeToken - card:', card);
   }
 
-  // manually start Ember loop
-  Ember.run.begin();
-
   return new Ember.RSVP.Promise(function (resolve, reject) {
     Stripe.card.createToken(card, function (status, response) {
 
@@ -20,12 +17,10 @@ function createToken (card) {
 
       if (response.error) {
         reject(response);
-        return Ember.run.end();
       }
 
       resolve(response);
 
-      Ember.run.end();
     });
   });
 }
