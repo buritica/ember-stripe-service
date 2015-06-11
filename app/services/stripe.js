@@ -64,7 +64,7 @@ function createBankAccountToken(bankAccount) {
   });
 }
 
-export default Ember.Object.extend({
+export default Ember.Service.extend({
   createToken: createCardTokenDeprecated,
   card: {
     createToken: createCardToken,
