@@ -15,7 +15,11 @@ function createCardToken (card) {
         Ember.Logger.info('StripeService: card.createToken handler - status %s, response:', status, response);
       }
 
-      Ember.run(null, response.error ? reject : resolve, response);
+      if (response.error) {
+        Ember.run(null, reject, response);
+      } else {
+        Ember.run(null, resolve, response);
+      }
     });
   });
 }
@@ -39,7 +43,11 @@ function createBankAccountToken(bankAccount) {
         Ember.Logger.info('StripeService: bankAccount.createToken handler - status %s, response:', status, response);
       }
 
-      Ember.run(null, response.error ? reject : resolve, response);
+      if (response.error) {
+        Ember.run(null, reject, response);
+      } else {
+        Ember.run(null, resolve, response);
+      }
     });
   });
 }
