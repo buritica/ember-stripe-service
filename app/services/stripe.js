@@ -8,9 +8,6 @@ function createCardToken (card) {
     Ember.Logger.info('StripeService: getStripeToken - card:', card);
   }
 
-  // manually start Ember loop
-  Ember.run.begin();
-
   return new Ember.RSVP.Promise(function (resolve, reject) {
     Stripe.card.createToken(card, function (status, response) {
 
@@ -19,13 +16,10 @@ function createCardToken (card) {
       }
 
       if (response.error) {
-        reject(response);
-        return Ember.run.end();
+        Ember.run(null, reject, response);
+      } else {
+        Ember.run(null, resolve, response);
       }
-
-      resolve(response);
-
-      Ember.run.end();
     });
   });
 }
@@ -42,9 +36,6 @@ function createBankAccountToken(bankAccount) {
     Ember.Logger.info('StripeService: getStripeToken - bankAccount:', bankAccount);
   }
 
-  // manually start Ember loop
-  Ember.run.begin();
-
   return new Ember.RSVP.Promise(function (resolve, reject) {
     Stripe.bankAccount.createToken(bankAccount, function (status, response) {
 
@@ -53,18 +44,15 @@ function createBankAccountToken(bankAccount) {
       }
 
       if (response.error) {
-        reject(response);
-        return Ember.run.end();
+        Ember.run(null, reject, response);
+      } else {
+        Ember.run(null, resolve, response);
       }
-
-      resolve(response);
-
-      Ember.run.end();
     });
   });
 }
 
-export default Ember.Object.extend({
+export default Ember.Service.extend({
   createToken: createCardTokenDeprecated,
   card: {
     createToken: createCardToken,
