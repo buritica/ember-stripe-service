@@ -135,6 +135,62 @@ test('it logs when LOG_STRIPE_SERVICE is set in env config', function(assert) {
   });
 });
 
+test('it card.validateCardNumber return true if credit card number is valid', function (assert) {
+  var service = this.subject();
+  var number = '4111111111111111';
+
+  var isValid = service.card.validateCardNumber(number);
+
+  assert.ok(isValid, 'valid credit card number');
+});
+
+test('it card.validateCardNumber return false if credit card number is invalid', function (assert) {
+  var service = this.subject();
+  var number = '4242111111111111';
+
+  var isValid = service.card.validateCardNumber(number);
+  assert.ok(!isValid, 'invalid credit card number');
+
+  number = '12345678';
+  isValid = service.card.validateCardNumber(number);
+  assert.ok(!isValid, 'invalid credit card number');
+
+  number = 'mistake';
+  isValid = service.card.validateCardNumber(number);
+  assert.ok(!isValid, 'invalid credit card number');
+});
+
+test('it card.cardType returns the type of the card as a string', function (assert) {
+  var service = this.subject();
+
+  var type = service.card.cardType('4242-4242-4242-4242');
+  assert.equal(type, 'Visa');
+
+  type = service.card.cardType('378282246310005');
+  assert.equal(type, 'American Express');
+
+  type = service.card.cardType('1234');
+  assert.equal(type, 'Unknown');
+});
+
+test('it card.validateExpiry returns true if represents an actual month in the future', function (assert) {
+  var service = this.subject();
+
+  var isValid = service.card.validateExpiry('02', '2020');
+  assert.ok(isValid, 'expiry date is valid');
+  isValid = service.card.validateExpiry(2, 2020);
+  assert.ok(isValid, 'expiry date is valid');
+});
+
+test('it card.validateExpiry returns false if not represents an actual month in the future', function (assert) {
+  var service = this.subject();
+  var isValid = service.card.validateExpiry('02', '15');
+
+  assert.ok(!isValid, 'expiry date is invalid');
+  isValid = service.card.validateExpiry(2, 2015);
+  assert.ok(!isValid, 'expiry date is invalid');
+});
+
 /**
  * @todo figure out how to change env variables at runtime
  */
