@@ -12,7 +12,6 @@ import Ember from 'ember';
  */
 function debug() {
   var debuggingEnabled = (typeof env.LOG_STRIPE_SERVICE !== 'undefined');
-  console.log('debuggingEnabled', debuggingEnabled);
 
   if (!debuggingEnabled) {
     return false;
