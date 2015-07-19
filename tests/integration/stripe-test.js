@@ -27,22 +27,20 @@ Stripe.setPublishableKey(env.stripe.publishableKey);
 test('card.createToken sets the token and returns a promise', function(assert) {
   var service = this.subject();
 
-  Ember.run(function(){
-    service.card.createToken(cc)
-    .then(function(res) {
-      assert.ok(res.id, 'correct token set');
-    });
+  return service.card.createToken(cc)
+  .then(function(res) {
+    console.log('res', res);
+    assert.ok(res.id, 'correct token set');
   });
 });
 
 test('bankAccount.createToken sets the token and returns a promise', function(assert) {
   var service = this.subject();
 
-  Ember.run(function(){
-    service.bankAccount.createToken(bankAccount)
-    .then(function(res) {
-      assert.ok(res.id, 'correct token set');
-    });
+  return service.bankAccount.createToken(bankAccount)
+  .then(function(res) {
+    console.log('res', res);
+    assert.ok(res.id, 'correct token set');
   });
 });
 
