@@ -1,6 +1,6 @@
 {
   "name": "ember-stripe-service",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "An ember-cli addon which injects Stripe as an Ember service",
   "directories": {
     "test": "tests"
