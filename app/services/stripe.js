@@ -47,19 +47,6 @@ function createCardToken (card) {
 }
 
 /**
- * Alias to `card.createToken`, exposed as `createCardToken`
- * @deprecated please see `card.createToken` for usage
- */
-function createCardTokenDeprecated(card) {
-  Ember.deprecate(
-    '`EmberStripeService.createToken` has been deprecated in ' +
-    'favor of `EmberStripeService.card.createToken` to match ' +
-    'the Stripe API.'
-  );
-  return createCardToken(card);
-}
-
-/**
  * Creates a BankAccout token using Stripe.js API, exposed as `bankAccount.createToken`
  * @param  {ojbect} bankAccount
  * @return {promise}      Returns a promise that holds response, see stripe.js docs for details
@@ -87,7 +74,6 @@ function createBankAccountToken(bankAccount) {
  * Expose module
  */
 export default Ember.Service.extend({
-  createToken: createCardTokenDeprecated,
   card: {
     createToken: createCardToken,
     cardType: Stripe.card.cardType,
