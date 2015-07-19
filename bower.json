@@ -12,5 +12,8 @@
     "loader.js": "ember-cli/loader.js#3.2.0",
     "qunit": "~1.17.1",
     "sinonjs": "~1.14.1"
+  },
+  "devDependencies": {
+    "sinonjs": "~1.10.2"
   }
 }
