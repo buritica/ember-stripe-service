@@ -31,9 +31,6 @@ function debug() {
 function createCardToken (card) {
   debug('card.createToken:', card);
 
-  // manually start Ember loop
-  Ember.run.begin();
-
   return new Ember.RSVP.Promise(function (resolve, reject) {
     Stripe.card.createToken(card, function (status, response) {
 
@@ -71,9 +68,6 @@ function createCardTokenDeprecated(card) {
  */
 function createBankAccountToken(bankAccount) {
   debug('bankAccount.createToken:', bankAccount);
-
-  // manually start Ember loop
-  Ember.run.begin();
 
   return new Ember.RSVP.Promise(function (resolve, reject) {
     Stripe.bankAccount.createToken(bankAccount, function (status, response) {
