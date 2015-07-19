@@ -92,7 +92,7 @@ function createBankAccountToken(bankAccount) {
 /**
  * Expose module
  */
-export default Ember.Object.extend({
+export default Ember.Service.extend({
   createToken: createCardTokenDeprecated,
   card: {
     createToken: createCardToken,
