@@ -1,6 +1,7 @@
-/* global Stripe */
 import Ember from 'ember';
 import config from '../config/environment';
+import getStripeLibrary from 'ember-stripe-service/get-stripe-library';
+
 var debug = config.LOG_STRIPE_SERVICE;
 
 export function initialize() {
@@ -12,7 +13,9 @@ export function initialize() {
     throw new Ember.Error('StripeService: Missing Stripe key, please set `ENV.stripe.publishableKey` in config.environment.js');
   }
 
-  Stripe.setPublishableKey(config.stripe.publishableKey);
+  if (!config.stripe.lazyLoad) {
+    return getStripeLibrary(config.stripe.publishableKey);
+  }
 }
 
 export default {

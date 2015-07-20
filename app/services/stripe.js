@@ -1,6 +1,6 @@
-/* global Stripe */
 import env from '../config/environment';
 import Ember from 'ember';
+import getStripeLibrary from "ember-stripe-service/get-stripe-library";
 
 /**
  * Uses Ember.Logger.info to output service information if LOG_STRIPE_SERVICE is
@@ -31,17 +31,19 @@ function debug() {
 function createCardToken (card) {
   debug('card.createToken:', card);
 
-  return new Ember.RSVP.Promise(function (resolve, reject) {
-    Stripe.card.createToken(card, function (status, response) {
+  return getStripeLibrary().then(function(Stripe) {
+    return new Ember.RSVP.Promise(function (resolve, reject) {
+      Stripe.card.createToken(card, function (status, response) {
 
-      debug('card.createToken handler - status %s, response:', status, response);
+        debug('card.createToken handler - status %s, response:', status, response);
 
-      if (response.error) {
-        return Ember.run(null, reject, response);
-      }
+        if (response.error) {
+          return Ember.run(null, reject, response);
+        }
 
-      Ember.run(null, resolve, response);
+        Ember.run(null, resolve, response);
 
+      });
     });
   });
 }
@@ -56,16 +58,18 @@ function createCardToken (card) {
 function createBankAccountToken(bankAccount) {
   debug('bankAccount.createToken:', bankAccount);
 
-  return new Ember.RSVP.Promise(function (resolve, reject) {
-    Stripe.bankAccount.createToken(bankAccount, function (status, response) {
+  return getStripeLibrary().then(function(Stripe) {
+    return new Ember.RSVP.Promise(function (resolve, reject) {
+      Stripe.bankAccount.createToken(bankAccount, function (status, response) {
 
-      debug('bankAccount.createToken handler - status %s, response:', status, response);
+        debug('bankAccount.createToken handler - status %s, response:', status, response);
 
-      if (response.error) {
-        return Ember.run(null, reject, response);
-      }
+        if (response.error) {
+          return Ember.run(null, reject, response);
+        }
 
-      Ember.run(null, resolve, response);
+        Ember.run(null, resolve, response);
+      });
     });
   });
 }
@@ -79,5 +83,8 @@ export default Ember.Service.extend({
   },
   bankAccount: {
     createToken: createBankAccountToken,
+  },
+  getScript: function() {
+    return getStripeLibrary(env.stripe.publishableKey);
   }
 });

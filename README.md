@@ -30,6 +30,35 @@ ENV.stripe = {
 };
 ````
 
+### Lazy Loading of `stripe.js`
+
+By default, `ember-stripe-service` loads the `stripe.js` library during app initialization. If you want to load the script lazily in order to improve boot
+performance, set `lazyLoad: true`:
+```javascript
+ENV.stripe = {
+  publishableKey: 'pk_thisIsATestKey',
+  lazyLoad: true
+};
+```
+
+`ember-stripe-service` will fetch `stripe.js` the first time it is needed.
+
+You can ensure it's ready before then by calling `stripeService.getScript()`.
+For example,
+
+```javascript
+// app/routes/payment.js
+
+stripe: Ember.inject.service(),
+
+afterModel: function() {
+  return this.get('stripe').getScript();
+}
+```
+
+It is safe to call `getScript` multiple times. If `Stripe` is already loaded,
+it will return a Promise that resolves immediately.
+
 ## Creating Stripe Tokens for Cards
 
 `ember-stripe-service` provides a promisified version of
