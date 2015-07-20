@@ -191,6 +191,41 @@ test('it card.validateExpiry returns false if not represents an actual month in 
   assert.ok(!isValid, 'expiry date is invalid');
 });
 
+test('it bankAccount.validateRoutingNumber returns true if routing number is valid', function (assert) {
+  var service = this.subject();
+
+  var isValid = service.bankAccount.validateRoutingNumber('111000025', 'US');
+  assert.ok(isValid, 'potentially valid routing  number');
+
+  isValid = service.bankAccount.validateRoutingNumber('11111-111', 'CA');
+  assert.ok(isValid, 'potentially valid routing  number');
+
+  isValid = service.bankAccount.validateRoutingNumber('990000000', 'US');
+  assert.ok(isValid, 'potentially valid routing  number');
+});
+
+test('it bankAccount.validateRoutingNumber returns false if routing number is invalid', function (assert) {
+  var service = this.subject();
+
+  var isValid = service.bankAccount.validateRoutingNumber('12345', 'US');
+  assert.ok(!isValid, 'invalid routing number');
+
+  isValid = service.bankAccount.validateRoutingNumber('mistake', 'CA');
+  assert.ok(!isValid, 'invalid routing number');
+});
+
+test('it bankAccount.validateAccountNumber returns true if account number is valid', function (assert) {
+  var service = this.subject();
+  var isValid = service.bankAccount.validateAccountNumber('000123456789', 'US');
+  assert.ok(isValid, 'potentially valid account number');
+});
+
+test('it bankAccount.validateAccountNumber returns false if account number is invalid', function (assert) {
+  var service = this.subject();
+  var isValid = service.bankAccount.validateAccountNumber('mistake', 'US');
+  assert.ok(!isValid, 'invalid account number');
+});
+
 /**
  * @todo figure out how to change env variables at runtime
  */

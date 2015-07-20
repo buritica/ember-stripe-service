@@ -83,5 +83,7 @@ export default Ember.Service.extend({
   },
   bankAccount: {
     createToken: createBankAccountToken,
+    validateRoutingNumber: Stripe.bankAccount.validateRoutingNumber,
+    validateAccountNumber: Stripe.bankAccount.validateAccountNumber
   }
 });
