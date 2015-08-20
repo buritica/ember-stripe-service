@@ -105,6 +105,41 @@ The interface is similar for bank account tokens:
 })
 ````
 
+## Client-side validation helpers
+Validations return true if Credit Card Number and Bank Account Number are POTENTIALLY valid, false instead.
+
+```javascript
+var attr = DS.attr;
+export default DS.Model.extend({
+  stripe: Ember.inject.service(),
+  cardNumber: attr('string'),
+  cardValidation: function () {
+    var card = this.get('stripe.card');
+    if (!card.validateCardNumber(this.get('cardNumber'))) {
+      throw 'Invalid credit card cardNumber';
+    }
+  },
+  type: function () {
+    var card = this.get('stripe.card');
+    return card.cardType(this.get('cardNumber'));
+  }.property('cardNumber'),
+  // ...
+  routingNumber: attr('string'),
+  accountNumber: attr('string'),
+  country: attr('string'),
+  bankAccountValidation: function () {
+    var bankAccount = this.get('stripe.bankAccount');
+    return bankAccount.validateRoutingNumber(this.get('routingNumber'), this.get('country')) &&
+            bankAccount.validateAccountNumber(this.get('accountNumber'), this.get('country'));
+  },
+...
+// other validations are
+// validateCardNumber
+// validateCVC
+// validateExpiry
+});
+```
+
 ## Debugging
 By setting `LOG_STRIPE_SERVICE` to true in your application configuration you can enable some debugging messages from the service
 

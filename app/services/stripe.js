@@ -76,8 +76,14 @@ function createBankAccountToken(bankAccount) {
 export default Ember.Service.extend({
   card: {
     createToken: createCardToken,
+    cardType: Stripe.card.cardType,
+    validateCardNumber: Stripe.card.validateCardNumber,
+    validateCVC: Stripe.card.validateCVC,
+    validateExpiry: Stripe.card.validateExpiry
   },
   bankAccount: {
     createToken: createBankAccountToken,
+    validateRoutingNumber: Stripe.bankAccount.validateRoutingNumber,
+    validateAccountNumber: Stripe.bankAccount.validateAccountNumber
   }
 });
