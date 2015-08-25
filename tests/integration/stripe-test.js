@@ -29,7 +29,7 @@ test('card.createToken sets the token and returns a promise', function(assert) {
 
   return service.card.createToken(cc)
   .then(function(res) {
-    assert.ok(res.id, 'correct token set');
+    assert.ok(!!res.id, 'correct token set');
   });
 });
 
@@ -38,7 +38,7 @@ test('bankAccount.createToken sets the token and returns a promise', function(as
 
   return service.bankAccount.createToken(bankAccount)
   .then(function(res) {
-    assert.ok(res.id, 'correct token set');
+    assert.ok(!!res.id, 'correct token set');
   });
 });
 

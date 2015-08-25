@@ -53,7 +53,7 @@ test('card.createToken rejects the promise if Stripe errors', function(assert) {
 
   return service.card.createToken(cc)
   .then(undefined, function(res) {
-    assert.equal(res, response, 'error passed');
+    assert.deepEqual(res, response, 'error passed');
     createToken.restore();
   });
 });
@@ -109,7 +109,7 @@ test('bankAccount.createToken rejects the promise if Stripe errors', function(as
 
   return service.bankAccount.createToken(ba)
   .then(undefined, function(res) {
-    assert.equal(res, response, 'error passed');
+    assert.deepEqual(res, response, 'error passed');
     createBankAccountToken.restore();
   });
 });
