@@ -4,6 +4,10 @@ import config from '../config/environment';
 var debug = config.LOG_STRIPE_SERVICE;
 
 export function initialize() {
+  if (typeof FastBoot !== "undefined") {
+    return;
+  }
+
   if (debug) {
     Ember.Logger.info('StripeService: initialize');
   }
