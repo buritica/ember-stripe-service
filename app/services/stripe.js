@@ -37,11 +37,10 @@ function createCardToken (card) {
       debug('card.createToken handler - status %s, response:', status, response);
 
       if (response.error) {
-        return Ember.run(null, reject, response);
+        return Ember.run(null, reject, new Ember.Error(response.error.code));
       }
 
       Ember.run(null, resolve, response);
-
     });
   });
 }
