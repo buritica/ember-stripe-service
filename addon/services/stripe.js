@@ -17,10 +17,12 @@ export default Ember.Service.extend({
       createToken: this._createPiiDataToken.bind(this)
     };
 
-    this._checkForAndAddCardFn('cardType', Stripe.card.cardType);
-    this._checkForAndAddCardFn('validateCardNumber', Stripe.card.validateCardNumber);
-    this._checkForAndAddCardFn('validateCVC', Stripe.card.validateCVC);
-    this._checkForAndAddCardFn('validateExpiry', Stripe.card.validateExpiry);
+    if (typeof FastBoot === 'undefined') {
+      this._checkForAndAddCardFn('cardType', Stripe.card.cardType);
+      this._checkForAndAddCardFn('validateCardNumber', Stripe.card.validateCardNumber);
+      this._checkForAndAddCardFn('validateCVC', Stripe.card.validateCVC);
+      this._checkForAndAddCardFn('validateExpiry', Stripe.card.validateExpiry);
+    }
   },
 
   /**
@@ -30,6 +32,9 @@ export default Ember.Service.extend({
   *                        status is not being returned at the moment but it can be logged
   */
   _createCardToken(card) {
+    if (typeof FastBoot !== 'undefined') {
+      return;
+    }
     this.debug('card.createToken:', card);
 
     return new Ember.RSVP.Promise((resolve, reject) => {
@@ -54,6 +59,9 @@ export default Ember.Service.extend({
   *
   */
   _createBankAccountToken(bankAccount) {
+    if (typeof FastBoot !== 'undefined') {
+      return;
+    }
     this.debug('bankAccount.createToken:', bankAccount);
 
     return new Ember.RSVP.Promise((resolve, reject) => {
@@ -77,6 +85,9 @@ export default Ember.Service.extend({
    *                           status is not being returned at the moment but it can be logged
    */
   _createPiiDataToken(piiData) {
+    if (typeof FastBoot !== 'undefined') {
+      return;
+    }
     this.debug('piiData.createToken:', piiData);
 
     return new Ember.RSVP.Promise((resolve, reject) => {
@@ -114,6 +125,9 @@ export default Ember.Service.extend({
   },
 
   _checkForAndAddCardFn(name, fn) {
+    if (typeof FastBoot !== 'undefined') {
+      return;
+    }
     if (Ember.isEqual(Ember.typeOf(Stripe.card[name]), 'function')) {
       this.card[name] = fn;
     } else {
