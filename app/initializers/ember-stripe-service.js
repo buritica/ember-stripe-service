@@ -2,6 +2,8 @@
 import Ember from 'ember';
 import config from '../config/environment';
 
+const isFastBoot = typeof FastBoot !== 'undefined';
+
 export function initialize() {
   const application = arguments[1] || arguments[0];
   application.register('config:ember-stripe-service', config, { instantiate: false });
@@ -15,7 +17,11 @@ export function initialize() {
     throw new Ember.Error('StripeService: Missing Stripe key, please set `ENV.stripe.publishableKey` in config.environment.js');
   }
 
-  Stripe.setPublishableKey(config.stripe.publishableKey);
+  if (isFastBoot) {
+    Ember.Logger.info('StripeService: Unavailable with FastBoot');
+  } else {
+    Stripe.setPublishableKey(config.stripe.publishableKey);
+  }
 
 }
 
