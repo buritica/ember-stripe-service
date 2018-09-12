@@ -1,9 +1,9 @@
 # ember-stripe-service
-[![Build Status](https://travis-ci.org/code-corps/ember-stripe-service.svg?branch=master)](https://travis-ci.org/code-corps/ember-stripe-service) [![npm version](https://badge.fury.io/js/ember-stripe-service.svg)](https://badge.fury.io/js/ember-stripe-service) [![Ember Observer Score](https://emberobserver.com/badges/ember-stripe-service.svg)](https://emberobserver.com/addons/ember-stripe-service) [![Inline docs](http://inch-ci.org/github/code-corps/ember-stripe-service.svg?branch=master&style=shields)](http://inch-ci.org/github/code-corps/ember-stripe-service) [![Slack Status](https://ember-community-slackin.herokuapp.com/badge.svg)](https://ember-community-slackin.herokuapp.com/)
+[![Build Status](https://travis-ci.org/code-corps/ember-stripe-service.svg?branch=master)](https://travis-ci.org/code-corps/ember-stripe-service) [![npm version](https://badge.fury.io/js/ember-stripe-service.svg)](https://badge.fury.io/js/ember-stripe-service) [![Ember Observer Score](https://emberobserver.com/badges/ember-stripe-service.svg)](https://emberobserver.com/addons/ember-stripe-service) [![Inline docs](http://inch-ci.org/github/code-corps/ember-stripe-service.svg?branch=master&style=shields)](http://inch-ci.org/github/code-corps/ember-stripe-service) [![Discord](https://img.shields.io/discord/480462759797063690.svg?logo=discord)](https://discord.gg/zT3asNS)
 
 `ember-stripe-service` is an easy way to add Stripe.js library to your ember-cli project without having to deal with manually setting the script tag.
 
-If you have any questions, come :wave: hello in #e-stripe-service on the [Ember Community Slack](https://ember-community-slackin.herokuapp.com).
+If you have any questions, come :wave: hello in the ![Official Ember Discord](https://discord.gg/zT3asNS)
 
 ## Features
 - sets stripe.js script in index.html (test, app)
