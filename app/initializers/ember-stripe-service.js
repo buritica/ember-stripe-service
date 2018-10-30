@@ -13,7 +13,7 @@ export function initialize() {
   application.inject('service:stripe', 'config', 'config:stripe');
 
   if (stripeConfig.debug) {
-    Ember.Logger.info('StripeService: initialize');
+    console.log('StripeService: initialize');
   }
 
   if (!stripeConfig.publishableKey) {
