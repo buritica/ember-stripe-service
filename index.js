@@ -2,7 +2,7 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-stripe-service',
+  name: require('./package').name,
   contentFor: function(type, config) {
     let stripeConfig = config.stripe || {};
 

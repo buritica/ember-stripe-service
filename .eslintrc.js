@@ -1,3 +1,5 @@
+/*eslint-env node*/
+
 module.exports = {
   root: true,
   parserOptions: {
@@ -20,15 +22,18 @@ module.exports = {
     // node files
     {
       files: [
+        '.template-lintrc.js',
+        'ember-cli-build.js',
         'index.js',
         'testem.js',
-        'ember-cli-build.js',
+        'blueprints/*/index.js',
         'config/**/*.js',
         'tests/dummy/config/**/*.js'
       ],
       excludedFiles: [
-        'app/**',
         'addon/**',
+        'addon-test-support/**',
+        'app/**',
         'tests/dummy/app/**'
       ],
       parserOptions: {
