@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import sinon from 'sinon';
 import { module, test } from 'qunit';
 import { initialize } from 'dummy/initializers/ember-stripe-service';
@@ -12,7 +11,8 @@ module('Unit | Initializer | Stripe Service Initializer', function(hooks) {
   test('it logs when LOG_STRIPE_SERVICE is set in env config', function(assert) {
     env.LOG_STRIPE_SERVICE = true;
 
-    let info = sinon.stub(Ember.Logger, 'info');
+    /* eslint-disable no-console */
+    let info = sinon.stub(console, 'log');
     initialize(this.owner.__container__, this.owner);
 
     assert.ok(info.calledWith('StripeService: initialize'));
@@ -23,7 +23,8 @@ module('Unit | Initializer | Stripe Service Initializer', function(hooks) {
     env.LOG_STRIPE_SERVICE = true;
     env.stripe.debug = undefined; // act like this was never set
 
-    let info = sinon.stub(Ember.Logger, 'info');
+    /* eslint-disable no-console */
+    let info = sinon.stub(console, 'log');
     initialize(this.owner.__container__, this.owner);
 
     let stripeConfig = this.owner.__container__.lookup('config:stripe');

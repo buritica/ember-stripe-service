@@ -1,12 +1,11 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import Ember from 'ember';
 import sinon from 'sinon';
 import config from 'dummy/config/environment';
 
 module('Acceptance | Initializer logging', function(hooks) {
   hooks.beforeEach(function() {
-    this.info = sinon.stub(Ember.Logger, 'info');
+    this.info = sinon.stub(console, 'log');
     this._original_LOG_STRIPE_SERVICE = config.LOG_STRIPE_SERVICE;
   });
 
