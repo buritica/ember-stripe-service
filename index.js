@@ -10,7 +10,7 @@ module.exports = {
     var mock = stripeConfig.mock;
 
     if (type === 'body' && !lazyLoad && !mock) {
-      return '<script type="text/javascript" src="https://js.stripe.com/v2/"></script>';
+      return '<script type="text/javascript" src="https://js.stripe.com/v3/"></script>';
     }
   },
 

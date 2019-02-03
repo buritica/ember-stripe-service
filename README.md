@@ -3,8 +3,6 @@
 
 `ember-stripe-service` is an easy way to add Stripe.js library to your ember-cli project without having to deal with manually setting the script tag.
 
-If you have any questions, come :wave: hello in the ![Official Ember Discord](https://discord.gg/zT3asNS)
-
 ## Features
 - sets stripe.js script in index.html (test, app)
 - initializes stripe with publishable key
