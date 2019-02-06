@@ -88,7 +88,7 @@ export default Service.extend({
 
   /**
   * Creates a creditCard token using Stripe.js API, exposed as `card.createToken`
-  * @param  {ojbect} card  CreditCard
+  * @param  {object} card  CreditCard
   * @return {promise}      Returns a promise that holds response, see stripe.js docs for details
   *                        status is not being returned at the moment but it can be logged
   */
@@ -113,7 +113,7 @@ export default Service.extend({
 
   /**
   * Creates a BankAccout token using Stripe.js API, exposed as `bankAccount.createToken`
-  * @param  {ojbect} bankAccount
+  * @param  {object} bankAccount
   * @return {promise}      Returns a promise that holds response, see stripe.js docs for details
   *                        Status is not being returned at the moment but it can be logged
   *

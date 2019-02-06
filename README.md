@@ -3,6 +3,8 @@
 
 `ember-stripe-service` is an easy way to add Stripe.js library to your ember-cli project without having to deal with manually setting the script tag.
 
+Related addon if you need to use Stripe's form elements as well - [`ember-stripe-elements`](https://github.com/code-corps/ember-stripe-elements)
+
 ## Features
 - sets stripe.js script in index.html (test, app)
 - initializes stripe with publishable key
