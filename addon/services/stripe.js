@@ -42,7 +42,7 @@ export default Service.extend({
     let mock = this.get('mock');
 
     let loadJs = lazyLoad && !mock ?
-      loadScript("https://js.stripe.com/v3/") :
+      loadScript("https://js.stripe.com/v2/") :
       resolve();
 
     return loadJs.then(() => {
