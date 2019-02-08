@@ -1,9 +1,7 @@
 # ember-stripe-service
 [![Build Status](https://travis-ci.org/code-corps/ember-stripe-service.svg?branch=master)](https://travis-ci.org/code-corps/ember-stripe-service) [![npm version](https://badge.fury.io/js/ember-stripe-service.svg)](https://badge.fury.io/js/ember-stripe-service) [![Ember Observer Score](https://emberobserver.com/badges/ember-stripe-service.svg)](https://emberobserver.com/addons/ember-stripe-service) [![Inline docs](http://inch-ci.org/github/code-corps/ember-stripe-service.svg?branch=master&style=shields)](http://inch-ci.org/github/code-corps/ember-stripe-service) [![Discord](https://img.shields.io/discord/480462759797063690.svg?logo=discord)](https://discord.gg/zT3asNS)
 
-`ember-stripe-service` is an easy way to add Stripe.js library to your ember-cli project without having to deal with manually setting the script tag.
-
-Related addon if you need to use Stripe's form elements as well - [`ember-stripe-elements`](https://github.com/code-corps/ember-stripe-elements)
+`ember-stripe-service` is an easy way to add Stripe.js library to your ember-cli project without having to deal with manually setting the script tag. We will keep this addon on Stripe v2.  Stripe v2 passes an object to create a token.  Stripe v3 requires that first argument to be a Stripe Element.  Stripe v3 is supported in [`ember-stripe-elements`](https://github.com/code-corps/ember-stripe-elements).  As such, this addon should only be used to create tokens and I would imagine most of you will use `ember-stripe-elements`.
 
 ## Features
 - sets stripe.js script in index.html (test, app)
